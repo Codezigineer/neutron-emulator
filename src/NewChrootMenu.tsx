@@ -7,9 +7,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { ReactNode, useState } from 'react';
+import { ReactElement, ReactNode, useState } from 'react';
 
-function FormDialog(onSubmit: (arg0: File, arg1: string) => any)
+function FormDialog(onSubmit: (arg0: File, arg1: string) => any): [ReactElement, () => void]
 {
   const [open, setOpen] = useState(false);
 

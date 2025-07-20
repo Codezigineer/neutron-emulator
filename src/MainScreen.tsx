@@ -29,7 +29,7 @@ async function addChroot(file: File, name: string)
     const reader = new FileReader();
     reader.readAsDataURL(file);
     await new Promise((res, _) => reader.addEventListener("loadend", res));
-    
+
     if(name)
     {
         await Filesystem.writeFile({
@@ -78,27 +78,27 @@ async function addChroot(file: File, name: string)
 function MainScreen()
 {
     const [ chroots, setChroots ] = useState([""]);
-    Filesystem.readdir({ path: ".", directory: Directory.External }).then(ls => setChroots(ls.files.filter(f => f.type === "directory").map(f => f.name)));
+    Filesystem.readdir({ path: "./", directory: Directory.External }).then(ls => setChroots(ls.files.filter(f => f.type === "directory").map(f => f.name)));
     const buttons = chroots.map(ChrootButton);
     const addDialog = FormDialog(addChroot);
+    const add = <Fab color="primary" aria-label="add" sx={{ position: "absolute", right: "20pt", bottom: "20pt" }}>
+                    <AddIcon />
+                </Fab>
+    (add as unknown as HTMLButtonElement).addEventListener("click", (..._: any[]) => (addDialog[1]()))
 
     if(chroots.length === 0) return (
         <>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "#acacacff", fontFamily: "Roboto", fontWeight: "lighter", fontSize: "35pt", minHeight: "90vh"}}>
                 <div>Welcome To Neutron</div>
             </div>
-            <Fab color="primary" aria-label="add" sx={{ position: "absolute", right: "20pt", bottom: "20pt" }} onClick={addDialog[1] as unknown as MouseEventHandler<HTMLButtonElement>}>
-                <AddIcon />
-            </Fab>
+            {add}
         </>
     );
     
     return (
         <>
             {...buttons}
-            <Fab color="primary" aria-label="add" onClick={addDialog[1] as unknown as MouseEventHandler<HTMLButtonElement>}>
-                <AddIcon />
-            </Fab>
+            {add}
         </>
     );
 };
