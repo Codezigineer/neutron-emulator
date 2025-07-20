@@ -14,7 +14,7 @@ function App()
 
   const [open, setOpen] = useState(false);
 
-  const toggleDrawer = (newOpen) => () => {
+  const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
 
