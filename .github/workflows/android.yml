@@ -13,10 +13,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: set up JDK 20
+    - name: set up JDK 21
       uses: actions/setup-java@main
       with:
-        java-version: '20'
+        java-version: '21'
         distribution: 'temurin'
         cache: gradle
     - name: Setup Node.js environment
@@ -24,4 +24,4 @@ jobs:
       with:
         node-version: latest
     - name: Build with Gradle
-      run: rm -rf .git/hooks;rm -rf android;mkdir dist;npm install;npx vite build;npx cap add android;npx cap sync;cd android;ls -lah;chmod +x gradlew;./gradlew build --warning-mode all
+      run: rm -rf .git/hooks;rm -rf android;mkdir dist;npm install;npx vite build;npx cap add android;npx cap sync;cd android;chmod +x gradlew;./gradlew build --warning-mode all
