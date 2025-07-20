@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prepublish": "vite build;npx cap sync",
-    "build proot": "git clone https://github.com/proot-me/proot.git;cd proot;make -C src loader.elf loader-m32.elf build.h;make -C proot"
+    "build_proot": "git clone https://github.com/proot-me/proot.git;cd proot;make -C src loader.elf loader-m32.elf build.h;make -C proot"
   },
   "dependencies": {
     "@capacitor/android": "^7.4.2",
@@ -23,6 +23,7 @@
     "@mui/material": "^7.2.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.15",
+    "cordova-plugin-shell-exec": "github:petervojtek/cordova-plugin-shell-exec",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
