@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from 'react';
+import { useState } from 'react';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Button, Fab } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
