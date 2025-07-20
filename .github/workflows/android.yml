@@ -24,4 +24,4 @@ jobs:
       with:
         node-version: latest
     - name: Build with Gradle
-      run: rm -rf .git/hooks;rm -rf android;mkdir dist;npm install;npx cap add android;npx vite build;npx cap sync;cd android;ls -lah;chmod +x gradlew;./gradlew build --warning-mode all
+      run: rm -rf .git/hooks;rm -rf android;mkdir dist;npm install;npx vite build;npx cap add android;npx cap sync;cd android;ls -lah;chmod +x gradlew;./gradlew build --warning-mode all
