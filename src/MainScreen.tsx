@@ -84,7 +84,7 @@ function MainScreen()
     const add = <Fab color="primary" aria-label="add" sx={{ position: "absolute", right: "20pt", bottom: "20pt" }}>
                     <AddIcon />
                 </Fab>
-    (add as unknown as HTMLButtonElement).addEventListener("click", (..._: any[]) => (addDialog[1]()))
+    (add as unknown as HTMLButtonElement).addEventListener("click", (..._: any[]) => (addDialog[1]()));
 
     if(chroots.length === 0) return (
         <>
