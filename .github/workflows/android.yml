@@ -24,4 +24,4 @@ jobs:
       with:
         node-version: latest
     - name: Build with Gradle
-      run: npm run prepublish;cd android;chmod +x gradlew./gradlew build
+    - run: npm run prepublish;cd android;chmod +x gradlew./gradlew build
