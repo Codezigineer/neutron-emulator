@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "my.app"
+    namespace "com.neutron.neutron"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "my.app"
+        applicationId "com.neutron.neutron"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
