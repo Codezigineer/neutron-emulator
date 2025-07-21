@@ -12,6 +12,7 @@ createRoot(document.getElementById('root') as Container).render(
     <App />
   </StrictMode>,
 )
-} catch(e) {
+} catch(e) { 
+  e = (e as Error);
   alert(e);
 }

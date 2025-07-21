@@ -16,7 +16,6 @@ async function runCmd(params: string[])
     const res = await new Promise<{ exitStatus: number, output: string }>((r, _) => (window as unknown as { ShellExec: { exec: (a: string[], b: (value: { exitStatus: number, output: string }) => void) => void } }).ShellExec.exec(params, r));
     if(res.exitStatus !== 0)
     {
-        alert(`Error with command \`${params.join(" ")}\`: \n${res.output}`);
         throw new EvalError(`Error with command \`${params.join(" ")}\`: \n${res.output}`);
     } else return res;
 };
