@@ -14,8 +14,11 @@ function ChrootButton(name: string)
 async function runCmd(params: string[])
 {
     const res = await new Promise<{ exitStatus: number, output: string }>((r, _) => (window as unknown as { ShellExec: { exec: (a: string[], b: (value: { exitStatus: number, output: string }) => void) => void } }).ShellExec.exec(params, r));
-    if(res.exitStatus !== 0) alert(`Error with command \`${params.join(" ")}\`: \n${res.output}`);
-    return res;
+    if(res.exitStatus !== 0)
+    {
+        alert(`Error with command \`${params.join(" ")}\`: \n${res.output}`);
+        throw new EvalError(`Error with command \`${params.join(" ")}\`: \n${res.output}`);
+    } else return res;
 };
 
 async function addChroot(file: File, name: string)
@@ -79,8 +82,8 @@ async function addChroot(file: File, name: string)
 
 function MainScreen()
 {
-    const [ chroots, setChroots ] = useState([""]);
-    //Filesystem.readdir({ path: "./", directory: Directory.External }).then(ls => setChroots(ls.files.filter(f => f.type === "directory").map(f => f.name)));
+    const [ chroots, setChroots ] = useState([""].slice(0, 0));
+    Filesystem.readdir({ path: "./", directory: Directory.External }).then(ls => setChroots(ls.files.filter(f => f.type === "directory").map(f => f.name)));
     const buttons = chroots.map(ChrootButton);
     const addDialog = FormDialog(addChroot);
     const add = (<Fab color="primary" aria-label="add" sx={{ position: "absolute", right: "20pt", bottom: "20pt" }} onClick={addDialog[1]}>
