@@ -12,7 +12,6 @@ import { ReactElement, ReactNode, useState } from 'react';
 function FormDialog(onSubmit: (arg0: File, arg1: string) => any): [ReactElement, () => void]
 {
   const [open, setOpen] = useState(false);
-
   const openDialog = () => setOpen(true);
   const close = () => setOpen(false);
   const name = <TextField

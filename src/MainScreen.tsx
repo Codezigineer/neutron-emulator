@@ -95,6 +95,7 @@ function MainScreen()
                 <div>Welcome To Neutron</div>
             </div>
             {add}
+            {addDialog[0]}
         </>
     );
     
@@ -102,6 +103,7 @@ function MainScreen()
         <>
             {...buttons}
             {add}
+            {addDialog[0]}
         </>
     );
 };
