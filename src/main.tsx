@@ -6,8 +6,12 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+try {
 createRoot(document.getElementById('root') as Container).render(
   <StrictMode>
     <App />
   </StrictMode>,
 )
+} catch(e) {
+  alert(e);
+}
