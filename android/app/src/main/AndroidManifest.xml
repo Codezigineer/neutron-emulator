@@ -16,7 +16,7 @@
             android:launchMode="singleTask"
             android:resizeableActivity="true"
             android:exported="true"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             tools:targetApi="24">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
