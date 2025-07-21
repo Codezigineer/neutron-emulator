@@ -83,7 +83,7 @@ function MainScreen()
     //Filesystem.readdir({ path: "./", directory: Directory.External }).then(ls => setChroots(ls.files.filter(f => f.type === "directory").map(f => f.name)));
     const buttons = chroots.map(ChrootButton);
     const addDialog = FormDialog(addChroot);
-    const add = (<Fab color="primary" aria-label="add" sx={{ position: "absolute", right: "20pt", bottom: "20pt" }} onClick={(..._: any[]) => (addDialog[1]())}>
+    const add = (<Fab color="primary" aria-label="add" sx={{ position: "absolute", right: "20pt", bottom: "20pt" }} onClick={addDialog[1]}>
                     <AddIcon />
                 </Fab>);
 
