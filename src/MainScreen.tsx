@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Button, Fab } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -80,13 +80,12 @@ async function addChroot(file: File, name: string)
 function MainScreen()
 {
     const [ chroots, setChroots ] = useState([""]);
-    Filesystem.readdir({ path: "./", directory: Directory.External }).then(ls => setChroots(ls.files.filter(f => f.type === "directory").map(f => f.name)));
+    //Filesystem.readdir({ path: "./", directory: Directory.External }).then(ls => setChroots(ls.files.filter(f => f.type === "directory").map(f => f.name)));
     const buttons = chroots.map(ChrootButton);
     const addDialog = FormDialog(addChroot);
-    const add = <Fab color="primary" aria-label="add" sx={{ position: "absolute", right: "20pt", bottom: "20pt" }}>
+    const add = (<Fab color="primary" aria-label="add" sx={{ position: "absolute", right: "20pt", bottom: "20pt" }} onClick={(..._: any[]) => (addDialog[1]())}>
                     <AddIcon />
-                </Fab>
-    (add as unknown as HTMLButtonElement).addEventListener("click", (..._: any[]) => (addDialog[1]()));
+                </Fab>);
 
     if(chroots.length === 0) return (
         <>
