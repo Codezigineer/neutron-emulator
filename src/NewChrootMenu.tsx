@@ -42,9 +42,9 @@ function FormDialog(onSubmit: (arg0: File, arg1: string) => any): [ReactElement,
             {name}
             {inputNode}
             <Card variant="outlined" onClick={input.click}>
-                <CardContent>
-                    <Typography variant='h4' alignItems="center" justifyContent="center">Add install script/tarball here</Typography>
-                </CardContent>
+              <CardContent>
+                <Typography variant='h4' alignItems="center" justifyContent="center">Add install script/tarball here</Typography>
+              </CardContent>
             </Card>
             <DialogActions>
               <Button onClick={close}>Cancel</Button>
