@@ -13,7 +13,9 @@ function ChrootButton(name: string)
 
 async function runCmd(params: string[])
 {
-    await new Promise((r, _) => (window as unknown as { ShellExec: { exec: (a: string[], b: (value: { exitStatus: number, output: string }) => void) => void } }).ShellExec.exec(params, r));
+    const res = await new Promise<{ exitStatus: number, output: string }>((r, _) => (window as unknown as { ShellExec: { exec: (a: string[], b: (value: { exitStatus: number, output: string }) => void) => void } }).ShellExec.exec(params, r));
+    if(res.exitStatus !== 0) alert(`Error with command \`${params.join(" ")}\`: \n${res.output}`);
+    return res;
 };
 
 async function addChroot(file: File, name: string)
