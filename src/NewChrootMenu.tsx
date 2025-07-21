@@ -30,6 +30,7 @@ function FormDialog(onSubmit: (arg0: File, arg1: string) => any): [ReactElement,
               accept="application/zip,.sh"
               className='filepicker'
               required
+              style={{ display: "none" }}
             />;
   var onClick = (_: any) => (document.getElementsByClassName("filepicker")[0] as HTMLInputElement).click();
   const inputNode = input as unknown as ReactNode;
