@@ -27,12 +27,13 @@ function FormDialog(onSubmit: (arg0: File, arg1: string) => any): [ReactElement,
             />;
   const input = <input 
               type="file" 
-              accept="application/zip"
-              required 
-              style={{ display: "none" }} 
-            /> as unknown as HTMLInputElement;
+              accept="application/zip,.sh"
+              className='filepicker'
+              required
+            />;
+  var onClick = (_: any) => (document.getElementsByClassName("filepicker")[0] as HTMLInputElement).click();
   const inputNode = input as unknown as ReactNode;
-  const submit = (_: unknown) => onSubmit((input.files as FileList)[0], (name as unknown as { htmlInput: HTMLInputElement }).htmlInput.name);
+  const submit = (_: unknown) => onSubmit(((document.getElementsByClassName("filepicker")[0] as HTMLInputElement).files as FileList)[0], (document.getElementsByName("name")[0] as HTMLInputElement).value);
 
   return [<>
       <Dialog open={open} onClose={close}>
@@ -41,7 +42,7 @@ function FormDialog(onSubmit: (arg0: File, arg1: string) => any): [ReactElement,
           <form onSubmit={submit}>
             {name}
             {inputNode}
-            <Card variant="outlined" onClick={input.click}>
+            <Card variant="outlined" onClick={onClick}>
               <CardContent>
                 <Typography variant='h4' alignItems="center" justifyContent="center">Add install script/tarball here</Typography>
               </CardContent>
