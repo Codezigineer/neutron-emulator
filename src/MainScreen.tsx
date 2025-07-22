@@ -24,7 +24,12 @@ function ChrootButton(name: string)
 {
     function run()
     {
-        bootVM(name);
+        try {
+            bootVM(name);
+        } catch(e) 
+        {
+            alert(e);
+        };
     };
 
     return <>
