@@ -1,14 +1,40 @@
 import { useState } from 'react';
 import { Directory, Filesystem } from '@capacitor/filesystem';
-import { Button, Fab } from '@mui/material';
+import { Button, Fab, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import FormDialog from './NewChrootMenu';
+
+async function bootVM(name: string)
+{
+    const prootPath = (await Filesystem.getUri({
+        path: `proot`,
+        directory: Directory.External
+    })).uri.replace("content://", "");
+
+    const vmPath = (await Filesystem.getUri({
+        path: `VMS/${name}`,
+        directory: Directory.External
+    })).uri.replace("content://", "");
+
+    await runCmd([prootPath, "-r", vmPath, "/bin/sh", "/boot.sh"]);
+};
 
 function ChrootButton(name: string)
 {
-    return <Button sx={{ borderRadius: 5, width: "33vw", height: "33vw"}} variant="outlined">
-        {name}
-    </Button>;
+    function run()
+    {
+        bootVM(name);
+    };
+
+    return <>
+        <Button sx={{ borderRadius: 3, borderWidth: 1, width: "20vw", height: "20vw", color: "#acacac", fontSize: "7vw", alignItems: "inherit", justifyContent: "inherit" }} onClick={run} variant="outlined">
+            <Typography sx={{ paddingLeft: "1vw", paddingTop: "1vw" }}>
+              {name}
+            </Typography>
+            <MoreHorizIcon sx={{ position: "absolute", left: "16vw", top: "16vw", zIndex: 30 }} />
+        </Button>
+    </>;
 };
 
 async function runCmd(params: string[])
