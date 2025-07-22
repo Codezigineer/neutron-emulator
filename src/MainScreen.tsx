@@ -6,7 +6,7 @@ import FormDialog from './NewChrootMenu';
 
 function ChrootButton(name: string)
 {
-    return <Button sx={{ borderRadius: 15 }} variant="outlined" size="large">
+    return <Button sx={{ borderRadius: 5, width: "33vw", height: "33vw"}} variant="outlined">
         {name}
     </Button>;
 };
