@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { useState } from 'react';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Button, Fab } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -6,7 +6,7 @@ import FormDialog from './NewChrootMenu';
 
 function ChrootButton(name: string)
 {
-    return <Button sx={{ borderRadius: 15 }}>
+    return <Button sx={{ borderRadius: 15 }} variant="outlined" size="large">
         {name}
     </Button>;
 };
