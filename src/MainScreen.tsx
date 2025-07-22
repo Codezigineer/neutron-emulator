@@ -81,9 +81,11 @@ async function addChroot(file: File, name: string)
 
 function MainScreen()
 {
+    Filesystem
     const [ chroots, setChroots ] = useState([""].slice(0, 0));
     Filesystem.stat({
-        path: "VMS"
+        path: "VMS",
+        directory: Directory.External
     }).catch(_ => Filesystem.mkdir({ path: "VMS", directory: Directory.External })).then(() => Filesystem.readdir({ path: "VMS", directory: Directory.External }).then(ls => setChroots(ls.files.filter(f => f.type === "directory").map(f => f.name)))).catch(r => alert(r));
     const buttons = chroots.map(ChrootButton);
     const addDialog = FormDialog(addChroot);
