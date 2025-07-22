@@ -10,12 +10,12 @@ async function bootVM(name: string)
     const prootPath = (await Filesystem.getUri({
         path: `proot`,
         directory: Directory.External
-    })).uri.replace("content://", "");
+    })).uri.replace("file://", "");
 
     const vmPath = (await Filesystem.getUri({
         path: `VMS/${name}`,
         directory: Directory.External
-    })).uri.replace("content://", "");
+    })).uri.replace("file://", "");
 
     await runCmd([prootPath, "-r", vmPath, "/bin/sh", "/boot.sh"]);
 };
@@ -47,6 +47,7 @@ async function runCmd(params: string[])
     const res = await new Promise<{ exitStatus: number, output: string }>((r, _) => (window as unknown as { ShellExec: { exec: (a: string[], b: (value: { exitStatus: number, output: string }) => void) => void } }).ShellExec.exec(params, r));
     if(res.exitStatus !== 0)
     {
+        alert(`Error with command \`${params.join(" ")}\`: \n${res.output}`)
         throw new EvalError(`Error with command \`${params.join(" ")}\`: \n${res.output}`);
     } else return res;
 };
@@ -75,7 +76,7 @@ async function addChroot(file: File, name: string)
         const scriptPath = (await Filesystem.getUri({
             path: `VMS/${name}/script.sh`,
             directory: Directory.External
-        })).uri.replace("content://", "");
+        })).uri.replace("file://", "");
         var newscript = scriptCmd.map(s => s);
         newscript.push(scriptPath);
         await runCmd(newscript);
@@ -97,7 +98,7 @@ async function addChroot(file: File, name: string)
         const tarPath = (await Filesystem.getUri({
             path: `VMS/${name}.tar.gz`,
             directory: Directory.External
-        })).uri.replace("content://", "");
+        })).uri.replace("file://", "");
         var newtar = tarballCmd.map(s => s);
         newtar.push(tarPath);
         await runCmd(newtar);
