@@ -27,7 +27,7 @@ function FormDialog(onSubmit: (arg0: File, arg1: string) => any): [ReactElement,
             />;
   const input = <input 
               type="file" 
-              accept="application/zip,.sh"
+              accept=".tar.gz,.sh"
               className='filepicker'
               required
               style={{ display: "none" }}
