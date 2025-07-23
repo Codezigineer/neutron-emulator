@@ -4,6 +4,7 @@ import { Button, Fab, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import FormDialog from './NewChrootMenu';
+import { FileTransfer } from "@capacitor/file-transfer";
 
 async function bootVM(name: string)
 {
@@ -113,7 +114,6 @@ async function addChroot(file: File, name: string)
 
 function MainScreen()
 {
-    Filesystem
     const [ chroots, setChroots ] = useState([""].slice(0, 0));
     Filesystem.stat({
         path: "VMS",
