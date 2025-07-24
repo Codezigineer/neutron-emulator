@@ -1,3 +1,4 @@
+export PATH=/bin
 arch=$(/bin/uname -m)
 latest=$(/bin/curl https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/$arch/latest-releases.yaml | /bin/grep "version: \\d*.\\d*.\\d*" | /bin/head -1)
 version=${latest:11}
