@@ -18,7 +18,7 @@ async function bootVM(name: string)
         directory: Directory.External
     })).uri.replace("file://", "");
 
-    await runCmd([prootPath, "-r", vmPath, "/bin/sh", "/boot.sh"]);
+    runCmd([prootPath, "-r", vmPath, "/bin/bash", "/boot.sh"]);
 };
 
 function ChrootButton(name: string)
@@ -45,7 +45,7 @@ function ChrootButton(name: string)
 
 async function runCmd(params: string[])
 {
-    const res = await new Promise<{ exitStatus: number, output: string }>((r, _) => (window as unknown as { ShellExec: { exec: (a: string[], b: (value: { exitStatus: number, output: string }) => void) => void } }).ShellExec.exec(params, r));
+    const res = await new Promise<{ exitStatus: number, output: string }>((r, _) => (window as unknown as { baShellExec: { exec: (a: string[], b: (value: { exitStatus: number, output: string }) => void) => void } }).baShellExec.exec(params, r));
     if(res.exitStatus !== 0)
     {
         alert(`Error with command \`${params.join(" ")}\`: \n${res.output}`)
@@ -56,7 +56,7 @@ async function runCmd(params: string[])
 async function addChroot(file: File, name: string)
 {
     const tarballCmd = ["/bin/tar", "-xvzf", `./${name}.tar.gz`];
-    const scriptCmd = ["/bin/sh"];
+    const scriptCmd = ["/bin/bash"];
 
     await Filesystem.mkdir({
         path: `VMS/${name}`,
@@ -82,7 +82,7 @@ async function addChroot(file: File, name: string)
         newscript.push(scriptPath);
         await runCmd(newscript);
         await Filesystem.deleteFile({
-            path: `VMS/${name}/script.sh`,
+            path: `VMS/${name}/script.bash`,
             directory: Directory.External
         });
     } else 
