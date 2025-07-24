@@ -33,12 +33,21 @@ function ChrootButton(name: string)
         };
     };
 
+    function delet()
+    {
+        Filesystem.rmdir({
+            path: `VMS/${name}`,
+            directory: Directory.External,
+            recursive: true
+        }).then(_ => location.reload());
+    };
+
     return <>
         <Button sx={{ borderRadius: 3, borderWidth: 1, width: "20vw", height: "20vw", color: "#acacac", fontSize: "7vw", alignItems: "inherit", justifyContent: "inherit" }} onClick={run} variant="outlined">
             <Typography sx={{ paddingLeft: "1vw", paddingTop: "1vw" }}>
               {name}
             </Typography>
-            <MoreHorizIcon sx={{ position: "absolute", left: "16vw", top: "16vw", zIndex: 30 }} />
+            <MoreHorizIcon sx={{ position: "absolute", left: "16vw", top: "16vw", zIndex: 30 }} onClick={delet} />
         </Button>
     </>;
 };
