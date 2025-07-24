@@ -5,5 +5,5 @@ version=${latest:11}
 url="https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/$arch/alpine-minirootfs-$version-$arch.tar.gz"
 /bin/curl $url -o alpine.tar.gz
 /bin/tar -xvzf alpine.tar.gz
-/bin/mv  -v ./alpine/.[!.]* ./
+/bin/mv  -v ./alpine/* ./
 /bin/rm -rf ./alpine
