@@ -55,6 +55,7 @@ async function runCmd(params: string[])
 
 async function addChroot(file: File, name: string)
 {
+    try {
     const tarballCmd = ["/bin/tar", "-xvzf", `./${name}.tar.gz`];
     const scriptCmd = ["/bin/bash"];
 
@@ -80,7 +81,6 @@ async function addChroot(file: File, name: string)
         })).uri.replace("file://", "");
         var newscript = scriptCmd.map(s => s);
         newscript.push(scriptPath);
-        await runCmd(newscript);
         await Filesystem.deleteFile({
             path: `VMS/${name}/script.bash`,
             directory: Directory.External
@@ -110,6 +110,10 @@ async function addChroot(file: File, name: string)
     };
 
     location.reload();
+    } catch(e)
+    {
+        alert(e);
+    };
 };
 
 function MainScreen()
