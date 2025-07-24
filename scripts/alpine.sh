@@ -6,3 +6,6 @@ url="https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/$arch/alpine-m
 /bin/curl $url -o alpine.tar.gz
 /bin/tar -xvzf alpine.tar.gz
 /bin/rm -rf ./alpine.tar.gz
+/bin/mkdir ./home/default
+/bin/touch boot.sh
+echo "cd /home/default;export PATH=/bin /usr/bin;/bin/bash -l"
