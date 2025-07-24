@@ -48,7 +48,9 @@ function ChrootButton(name: string)
             <Typography sx={{ paddingLeft: "1vw", paddingTop: "1vw" }}>
               {name}
             </Typography>
-            <MoreHorizIcon sx={{ position: "absolute", left: "16vw", top: "16vw", zIndex: 30 }} onClick={delet} />
+            <Typography sx={{ position: "absolute", left: "15vw", top: "17vw", zIndex: 30, fontSize: "1vw" }} onClick={delet}>
+                Delete
+            </Typography>
         </Button>
     </>;
 };
