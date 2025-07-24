@@ -35,6 +35,7 @@ function ChrootButton(name: string)
 
     function delet()
     {
+        if(confirm("Are you sure you want to delete this VM?"))
         Filesystem.rmdir({
             path: `VMS/${name}`,
             directory: Directory.External,
