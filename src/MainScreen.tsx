@@ -3,7 +3,6 @@ import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Button, Fab, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import FormDialog from './NewChrootMenu';
-import { FileTransfer } from '@capacitor/file-transfer';
 
 async function bootVM(name: string)
 {
