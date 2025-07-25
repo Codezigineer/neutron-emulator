@@ -28,7 +28,7 @@ function ChrootButton(name: string)
             bootVM(name);
         } catch(e) 
         {
-            alert(e);
+            alert((e as Error).toString());
         };
     };
 
@@ -59,7 +59,7 @@ async function runCmd(params: string[])
     const res = await new Promise<{ exitStatus: number, output: string }>((r, _) => (window as unknown as { baShellExec: { exec: (a: string[], b: (value: { exitStatus: number, output: string }) => void) => void } }).baShellExec.exec(params, r));
     if(res.exitStatus !== 0)
     {
-        alert(`Error with command \`${params.join(" ")}\`: \n${res.output}`)
+        alert(`Error with command \`${params.join(" ")}\`: \n${res.output}`);
         throw new EvalError(`Error with command \`${params.join(" ")}\`: \n${res.output}`);
     } else return res;
 };
@@ -123,7 +123,7 @@ async function addChroot(file: File, name: string)
     location.reload();
     } catch(e)
     {
-        alert(e);
+        alert((e as Error).toString());
     };
 };
 
@@ -139,12 +139,12 @@ function MainScreen()
         url: "https://raw.githubusercontent.com/proot-me/proot-static-build/refs/heads/master/static/proot-arm64",
         path: uri.uri
     })));
-    
+
     const [ chroots, setChroots ] = useState([""].slice(0, 0));
     Filesystem.stat({
         path: "VMS",
         directory: Directory.External
-    }).catch(_ => Filesystem.mkdir({ path: "VMS", directory: Directory.External })).then(() => Filesystem.readdir({ path: "VMS", directory: Directory.External }).then(ls => setChroots(ls.files.filter(f => f.type === "directory").map(f => f.name)))).catch(r => alert(r));
+    }).catch(_ => Filesystem.mkdir({ path: "VMS", directory: Directory.External })).then(() => Filesystem.readdir({ path: "VMS", directory: Directory.External }).then(ls => setChroots(ls.files.filter(f => f.type === "directory").map(f => f.name)))).catch(r => alert((r as Error).toString()));
     const buttons = chroots.map(ChrootButton);
     const addDialog = FormDialog(addChroot);
     const add = (<Fab color="primary" aria-label="add" sx={{ position: "absolute", right: "20pt", bottom: "20pt" }} onClick={addDialog[1]}>
