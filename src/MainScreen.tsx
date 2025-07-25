@@ -3,6 +3,7 @@ import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Button, Fab, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import FormDialog from './NewChrootMenu';
+import { FileTransfer } from '@capacitor/file-transfer';
 
 async function bootVM(name: string)
 {
@@ -128,6 +129,17 @@ async function addChroot(file: File, name: string)
 
 function MainScreen()
 {
+    Filesystem.stat({
+        path: "proot",
+        directory: Directory.External
+    }).catch(_ => Filesystem.getUri({
+        path: "proot",
+        directory: Directory.External
+    }).then(uri => FileTransfer.downloadFile({
+        url: "https://raw.githubusercontent.com/proot-me/proot-static-build/refs/heads/master/static/proot-arm64",
+        path: uri.uri
+    })));
+    
     const [ chroots, setChroots ] = useState([""].slice(0, 0));
     Filesystem.stat({
         path: "VMS",
